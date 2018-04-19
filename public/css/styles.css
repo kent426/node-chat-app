@@ -43,6 +43,7 @@ body {
 }
 
 .rightbar--topview {
+    overflow-y:auto;
     flex: 1;
     font-size: 1.9rem;
     padding: 1rem
@@ -139,3 +140,27 @@ body {
     cursor: default;
     background: #698ea5;
   }
+
+li.message {
+    margin: 2rem;
+
+}
+
+.message--title--from {
+    font-size: 2.5rem;
+    display: inline;
+    margin-right: 1rem;
+    font-weight: 600;
+
+}
+
+.message--title--time {
+    color: #999;
+
+}
+
+
+.message--body {
+    margin: .5rem;
+
+}

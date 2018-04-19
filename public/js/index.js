@@ -1,5 +1,23 @@
 var socket = io()
 
+function scrollToBottom() {
+    var message = $('.rightbar--topview')
+
+    var scrollHeight = message.prop('scrollHeight')
+    var scrollTop = message.prop('scrollTop')
+    var clientHeight = message.prop('clientHeight')
+    var lastMessage = $('#message-list').children('li:last-child');
+    var lastMessageHeight = lastMessage.outerHeight(true)
+    console.log('scrollTop',scrollTop)
+    console.log('clientHeight',clientHeight)
+    console.log('lastMessageHeight',lastMessageHeight)
+    console.log('scrollHeight',scrollHeight)
+    
+    if(scrollTop + clientHeight + lastMessageHeight >= scrollHeight - 100) {
+        message.scrollTop(scrollHeight)
+    }
+}
+
 socket.on('connect', function() {
     console.log('connected to the server.')
 
@@ -12,11 +30,16 @@ socket.on('disconnect', function() {
 })
 
 socket.on('newMessage', function(data) {
-    console.log('New message.', data)
-    var li = $('<li></li>')
-    li.text(`${data.from}: ${data.text}`)
+    var formattedTime = moment(data.createdAt).format('h:mm a')
+    var template = $('#message-template').html()
+    var html = Mustache.render(template, {
+        text: data.text,
+        from: data.from,
+        createdAt: formattedTime
+    })
 
-    $('#message-list').append(li)
+    $('#message-list').append(html)
+    scrollToBottom()
 })
 
 
