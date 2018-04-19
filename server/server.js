@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
         var newM = Object.assign(newMessage, {createdAt: new Date().getTime()})
         console.log('Message received', newM)
 
-        socket.emit('newMessage',newM)
+        io.emit('newMessage',newM)
     })
 
     })
