@@ -3,7 +3,10 @@ const http = require('http')
 const express = require('express')
 const socketIO = require('socket.io')
 
+const { generateMessage } = require('./utils/message')
+
 const port = process.env.PORT || 3000
+
 
 const publicPath = path.join(__dirname , '../public')
 
@@ -17,17 +20,9 @@ app.use(express.static(publicPath))
 io.on('connection', (socket) => {
     console.log('new user connected.')
 
-    socket.emit('newMessage', {
-        from: 'admin',
-        text: 'Welcome'
+    socket.emit('newMessage', generateMessage('admin','Welcome'))
 
-
-    })
-
-    socket.broadcast.emit('newMessage', {
-        from: 'new user',
-        text: ' new user joined'
-    })
+    socket.broadcast.emit('newMessage', generateMessage('new user', 'new user joined'))
 
 
 
