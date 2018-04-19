@@ -19,7 +19,16 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('tab is closed. Client disconnected.')
     })
-})
+
+    socket.on('createMessage', 
+    (newMessage) => {
+        var newM = Object.assign(newMessage, {createdAt: new Date().getTime()})
+        console.log('Message received', newM)
+
+        socket.emit('newMessage',newM)
+    })
+
+    })
 
 server .listen(port, () => {
     console.log(`Started on port ${port}.`)
