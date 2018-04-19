@@ -82,6 +82,7 @@ body {
 .rightbar--sendview--form--input{
     flex:1 1;
     width: 0;
+    min-width: 50px;
     margin-right: .5rem;
     border: none;
     padding: 1rem;
