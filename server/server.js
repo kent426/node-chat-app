@@ -16,9 +16,21 @@ app.use(express.static(publicPath))
 
 io.on('connection', (socket) => {
     console.log('new user connected.')
-    socket.on('disconnect', () => {
-        console.log('tab is closed. Client disconnected.')
+
+    socket.emit('newMessage', {
+        from: 'admin',
+        text: 'Welcome'
+
+
     })
+
+    socket.broadcast.emit('newMessage', {
+        from: 'new user',
+        text: ' new user joined'
+    })
+
+
+
 
     socket.on('createMessage', 
     (newMessage) => {
@@ -26,6 +38,11 @@ io.on('connection', (socket) => {
         console.log('Message received', newM)
 
         io.emit('newMessage',newM)
+        //socket.broadcast.emit('newMessage',newM)
+    })
+
+    socket.on('disconnect', () => {
+        console.log('tab is closed. Client disconnected.')
     })
 
     })
