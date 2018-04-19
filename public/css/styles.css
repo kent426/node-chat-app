@@ -60,7 +60,7 @@ body {
     flex:0 0 10%;
     display: flex;
     align-items: stretch;
-    background: #e6eaee;
+    background-color: gray;
     border: none;
     padding: 2rem;
     
@@ -83,26 +83,7 @@ body {
     font-size: 2rem;
 
 
-    button {
-        border: none;
-        background: #265f82;
-        color: white;
-        cursor: pointer;
-        padding: 10px;
-        transition: background .3s ease;
-      }
-      
-      button:hover {
-        border: none;
-        background: #1F4C69;
-        color: white;
-        padding: 10px;
-      }
-      
-      button:disabled {
-        cursor: default;
-        background: #698ea5;
-      }}
+}
 .rightbar--sendview--form--button {
     margin-right: .5rem;
     border: none;
@@ -117,11 +98,28 @@ body {
     margin-right: .5rem;
         padding: 1rem;
         font-size: 1.5rem;
-        border: none;
 
 }
 
-button {
+@media (max-height: 600px) {
+
+    .rightbar--sendview {
+        margin-bottom: 1rem;
+        
+    }
+
+    .rightbar--sendview--form--button {
+        margin:0.4rem auto;
+
+    }
+
+    .rightbar--sendview--locationButton {
+        margin:0.4rem auto;
+
+    }
+  }
+
+  button {
     border: none;
     background: #265f82;
     color: white;
@@ -140,13 +138,4 @@ button {
   button:disabled {
     cursor: default;
     background: #698ea5;
-  }
-
-@media (max-height: 600px) {
-
-    .rightbar--sendview {
-        margin-bottom: 1rem;
-        
-    }
-
   }
