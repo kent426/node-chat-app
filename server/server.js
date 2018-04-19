@@ -37,6 +37,10 @@ io.on('connection', (socket) => {
         //socket.broadcast.emit('newMessage',newM)
     })
 
+    socket.on('createLocationMessage', (locMessage) => {
+        io.emit('newMessage', generateMessage('Admin', `${locMessage.lat}, ${locMessage.long}`))
+    })
+
     socket.on('disconnect', () => {
         console.log('tab is closed. Client disconnected.')
     })
