@@ -17,6 +17,7 @@ var io = socketIO(server)
 
 app.use(express.static(publicPath))
 
+
 io.on('connection', (socket) => {
     console.log('new user connected.')
 
@@ -46,6 +47,8 @@ io.on('connection', (socket) => {
     })
 
     })
+
+
 
 server .listen(port, () => {
     console.log(`Started on port ${port}.`)

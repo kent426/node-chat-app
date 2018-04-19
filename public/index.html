@@ -1,51 +1,40 @@
 <!DOCTYPE html>
-
 <html>
     <head>
-        <meta charset="utf-8">
-        <link rel='stylesheet' href='css/styles.css' >
+        <meta charset='utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" > 
+        <link rel='stylesheet' href='css/styles.css' >  
+        <title >Chat | Chat app</title>
 
     </head>
-    <body>
-        <div class='container'>
-            <div class='leftbar'>
-                <h1>People</h1>
+    <body class='centered-form'>
+
+        
+            <div class='centered-form__form'>
+                <form action='/chat.html'>
+                    <div class='form-field'>
+                        <h1 class='form-field-title'>Join a Chat</h1>
+
+                    </div>
+
+                    <div class='form-field'>
+                        <label for='name'>Display Name</label>
+                        <input type="text" name='name' autofocus />
+                    </div>
+                    <div class='form-field'>
+                            <label for='room'>Room Name</label>
+                            <input type="text" name='room'  />
+                        
+                    </div>
+                    <div class='form-field'>
+                        <button>Join</button>
+                        
+                    </div>
+                </form>
+
             </div>
-            <div class='rightbar'>
-                <div class='rightbar--topview'>
-                    <p>Welcome to the chat app</p>
 
-                    <ol id='message-list'></ol>
-                </div>
+    
 
-                <div class="rightbar--sendview">
-
-                    <form id='message-form' class="rightbar--sendview--form">
-                        <input name='message' type='text' placeholder="Message" class="rightbar--sendview--form--input" autofocus  autocomplete="off"/>
-                        <button  class="rightbar--sendview--form--button">Send</button>
-
-                    </form>
-                    <button id='send-location' class="rightbar--sendview--locationButton"> Send Location</button>
-                </div>
-            </div>
-        </div>
-
-        <script id='message-template' type='text/template'>
-            <li class='message'>
-                <div class='message--title'>
-                    <h1 class='message--title--from'>{{from}}</h1>
-                    <span class='message--title--time'>{{createdAt}}</span>
-                </div>
-                <div class='message--body'>
-                    <p>{{text}}</p>
-                </div>
-            </li>
-        </script>
-
-        <script src="/socket.io/socket.io.js"></script>
-        <script src='/js/libs/jquery-3.3.1.min.js'></script>
-        <script src='/js/libs/moment.js'></script>
-        <script src='/js/libs/mustache.min.js'></script>
-        <script src="/js/index.js" ></script>
     </body>
 </html>

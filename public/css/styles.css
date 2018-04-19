@@ -85,15 +85,17 @@ body {
 
 
 }
-.rightbar--sendview--form--button {
+button.rightbar--sendview--form--button {
     margin-right: .5rem;
     border: none;
     padding: 1rem;
-    font-size: 1.5rem
+    font-size: 1.5rem;
+    flex-basis: 15%;
+
 
 }
 
-.rightbar--sendview--locationButton {
+button.rightbar--sendview--locationButton {
    
     display: block;
     margin-right: .5rem;
@@ -102,23 +104,7 @@ body {
 
 }
 
-@media (max-height: 600px) {
 
-    .rightbar--sendview {
-        margin-bottom: 1rem;
-        
-    }
-
-    .rightbar--sendview--form--button {
-        margin:0.4rem auto;
-
-    }
-
-    .rightbar--sendview--locationButton {
-        margin:0.4rem auto;
-
-    }
-  }
 
   button {
     border: none;
@@ -126,7 +112,7 @@ body {
     color: white;
     cursor: pointer;
     padding: 10px;
-    transition: background .3s ease;
+    transition: background .3s ease; 
   }
   
   button:hover {
@@ -164,3 +150,94 @@ li.message {
     margin: .5rem;
 
 }
+
+@media only screen and (max-width: 600px) {
+
+    .rightbar--sendview {
+        margin-bottom: 1rem;
+        
+    }
+
+    button.rightbar--sendview--form--button {
+        margin:0.4rem auto;
+        flex-basis: 25%;
+        
+    
+
+    }
+
+    button.rightbar--sendview--locationButton {
+        margin:0.4rem auto;
+
+    }
+  }
+
+  @media only screen and (max-height: 700px) {
+
+    button.rightbar--sendview--form--button {
+        padding-top: 3px;
+    
+
+    }
+
+    button.rightbar--sendview--locationButton {
+        padding-top: 3px;
+
+
+    }
+  }
+
+
+
+  /* index.html */
+  .centered-form {
+    background-image: linear-gradient(to right bottom, rgb(41, 77, 135),rgb(103, 110, 137));
+    background-repeat: no-repeat; 
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+  }
+
+  .centered-form__form{
+    background: rgba(250, 250, 250, 0.9);
+    border: .1rem solid #e1e1e1;
+    border-radius: .5rem;
+    padding: 0 2rem;
+    margin: 2rem;
+    width: 30rem;
+  }
+
+  .form-field {
+    margin: 2rem 0;
+    
+  }
+  
+  .form-field > * {
+    width: 100%;
+    font-size: 2rem;
+  }
+
+  .form-field-title {
+      font-size: 3rem;
+      font-weight: 600;
+      text-align: center;
+  }
+
+  
+  
+  .form-field label {
+    display: block;
+    margin-bottom: .7rem;
+  }
+  
+  .form-field input, .form-field select {
+    border: 1px solid #e1e1e1;
+    padding: 1rem;
+  }
+
+
+
+
+
