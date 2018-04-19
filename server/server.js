@@ -20,7 +20,7 @@ app.use(express.static(publicPath))
 io.on('connection', (socket) => {
     console.log('new user connected.')
 
-    socket.emit('newMessage', generateMessage('admin','Welcome'))
+    socket.emit('newMessage', generateMessage('admin','Welcome to the chat app'))
 
     socket.broadcast.emit('newMessage', generateMessage('new user', 'new user joined'))
 
@@ -28,11 +28,12 @@ io.on('connection', (socket) => {
 
 
     socket.on('createMessage', 
-    (newMessage) => {
-        var newM = Object.assign(newMessage, {createdAt: new Date().getTime()})
+    (newMessage, callback) => {
+        var newM = generateMessage(newMessage.from,newMessage.text)
         console.log('Message received', newM)
 
         io.emit('newMessage',newM)
+        callback("sup from server")
         //socket.broadcast.emit('newMessage',newM)
     })
 
