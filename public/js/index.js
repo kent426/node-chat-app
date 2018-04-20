@@ -8,10 +8,6 @@ function scrollToBottom() {
     var clientHeight = message.prop('clientHeight')
     var lastMessage = $('#message-list').children('li:last-child');
     var lastMessageHeight = lastMessage.outerHeight(true)
-    console.log('scrollTop',scrollTop)
-    console.log('clientHeight',clientHeight)
-    console.log('lastMessageHeight',lastMessageHeight)
-    console.log('scrollHeight',scrollHeight)
     
     if(scrollTop + clientHeight + lastMessageHeight >= scrollHeight - 100) {
         message.scrollTop(scrollHeight)
@@ -21,8 +17,24 @@ function scrollToBottom() {
 socket.on('connect', function() {
     console.log('connected to the server.')
 
+    var params = $.deparam(location.search)
+
+    socket.emit('join',params, function(err) {
+        if(err) {
+            alert(err)
+            location.href = '/'
+        }
+    })
+
 
     
+})
+
+
+
+
+socket.on('updateUserList', function(users) {
+    console.log(users)
 })
 
 socket.on('disconnect', function() {
@@ -56,23 +68,23 @@ $('#message-form').on('submit', function(e) {
     
 })
 
-var locationButton = $('#send-location')
-locationButton.on('click', function() {
-    if(!navigator.geolocation) {
-        return alert('Geolocation not supported by your browser.')
-    }
+// var locationButton = $('#send-location')
+// locationButton.on('click', function() {
+//     if(!navigator.geolocation) {
+//         return alert('Geolocation not supported by your browser.')
+//     }
 
-    locationButton.attr('disabled', 'disabled').text('Sending Location...')
+//     locationButton.attr('disabled', 'disabled').text('Sending Location...')
 
-    navigator.geolocation.getCurrentPosition(function(position) {
-        console.log(position)
-        socket.emit('createLocationMessage',{
-            lat: position.coords.latitude,
-            long: position.coords.longitude
-        })
-        locationButton.removeAttr('disabled').text('Send Location')
-    }, function(err) {
-        locationButton.removeAttr('disabled').text('Send Location')
-        alert(`Unable to fetch location. ${err.code}, ${err.message}`)
-    })
-})
+//     navigator.geolocation.getCurrentPosition(function(position) {
+//         console.log(position)
+//         socket.emit('createLocationMessage',{
+//             lat: position.coords.latitude,
+//             long: position.coords.longitude
+//         })
+//         locationButton.removeAttr('disabled').text('Send Location')
+//     }, function(err) {
+//         locationButton.removeAttr('disabled').text('Send Location')
+//         alert(`Unable to fetch location. ${err.code}, ${err.message}`)
+//     })
+// })

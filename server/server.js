@@ -4,6 +4,8 @@ const express = require('express')
 const socketIO = require('socket.io')
 
 const { generateMessage } = require('./utils/message')
+const { isRealString } = require('./utils/isRealString')
+const { Users } = require('./utils/users')
 
 const port = process.env.PORT || 3000
 
@@ -17,13 +19,33 @@ var io = socketIO(server)
 
 app.use(express.static(publicPath))
 
+var users = new Users()
+
 
 io.on('connection', (socket) => {
     console.log('new user connected.')
 
-    socket.emit('newMessage', generateMessage('admin','Welcome to the chat app'))
+    socket.on('join', (params, callback) => {
+        if(!isRealString(params.name) || !isRealString(params.room)) {
+            callback('Invalid room or name provided.')
+        }
 
-    socket.broadcast.emit('newMessage', generateMessage('new user', 'new user joined'))
+        socket.join(params.room)
+        users.addUser(socket.id, params.name, params.room)
+
+        socket.emit('newMessage', generateMessage('Admin','Welcome to the chat app'))
+
+        socket.broadcast.to(params.room).emit('newMessage', generateMessage(params.name, `${params.name} joined`))
+
+
+        socket.broadcast.to(params.room).emit('updateUserList', users.getUserList(params.room))
+
+        
+        callback()
+
+    })
+
+
 
 
 
