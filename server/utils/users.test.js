@@ -76,4 +76,29 @@ describe('Users class', () => {
              expect(users.users).toEqual(samples)
          })
     })
+
+    describe('validateUser', () => {
+        it('should return true if user infos match', () => {
+           u = users.validateUser(samples[0].id, samples[0].name, samples[0].room)
+
+            expect(u).toBe(true)
+        })
+
+        it('should false if user id not exists', () => {
+            u = users.validateUser('4',samples[0].name, samples[0].room)
+             expect(u).toNotExist()
+         })
+
+         it('should false if user name not right', () => {
+            u = users.validateUser(samples[0].id, 'wrongname', samples[0].room)
+             expect(u).toNotExist()
+         })
+
+         it('should false if user room not right', () => {
+           u = users.validateUser(samples[0].id, samples[0].name, 'room')
+             expect(u).toNotExist()
+         })
+
+
+    })
 })

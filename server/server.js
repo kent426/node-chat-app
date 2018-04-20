@@ -38,10 +38,6 @@ io.on('connection', (socket) => {
         socket.emit('newMessage', generateMessage('Admin','Welcome to the chat app'))
 
         socket.broadcast.to(params.room).emit('newMessage', generateMessage(params.name, `${params.name} joined`))
-
-
-        
-
         
         callback()
 
@@ -54,11 +50,25 @@ io.on('connection', (socket) => {
 
     socket.on('createMessage', 
     (newMessage, callback) => {
+
+        var id = newMessage.id
+        var name = newMessage.from
+        var room = newMessage.room
+
+        if(!users.validateUser(id,name,room)) {
+            return callback('Action not authorized.')
+
+        }
+
         var newM = generateMessage(newMessage.from,newMessage.text)
         console.log('Message received', newM)
+        io.to(newMessage.room).emit('newMessage',newM)
+        callback()
 
-        io.emit('newMessage',newM)
-        callback("sup from server")
+
+
+
+        // callback()
         //socket.broadcast.emit('newMessage',newM)
     })
 

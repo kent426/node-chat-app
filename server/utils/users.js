@@ -44,6 +44,15 @@ class Users {
         var namesArr = roomUsers.map((user) => user.name)
         return namesArr
     }
+
+    validateUser(id,name,room) {
+        var user = this.getUser(id)
+        if(!user) {
+            return false
+        }
+
+        return user.name === name && user.room === room 
+    }
 }
 
 module.exports = { Users }

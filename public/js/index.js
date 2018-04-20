@@ -35,7 +35,7 @@ socket.on('connect', function() {
 
 socket.on('updateUserList', function(users) {
     console.log(users)
-    var ol = $('<ol></ol>')
+    var ol = $('<ol ></ol>')
     
     users.forEach(function(user){
         ol.append($('<li></li>').text(user))
@@ -64,12 +64,20 @@ socket.on('newMessage', function(data) {
 
 $('#message-form').on('submit', function(e) {
     e.preventDefault()
+
+    var params = $.deparam(location.search)
+
     var message = $("[name='message']").val()
     socket.emit('createMessage' ,{
-        from: 'user',
+        id: socket.id,
+        room:params.room,
+        from: params.name,
         text: message
-    }, function() {
+    }, function(err) {
         $("[name='message']").val('')
+        if(err) {
+            alert(err)
+        }
     })
     
     
