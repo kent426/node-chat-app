@@ -36,6 +36,15 @@ body {
 
 }
 
+#people li {
+    text-align: center;
+    padding: 1rem;
+    background-color: white;
+    color: black;
+    margin: .4rem;
+    border-radius: 40rem
+}
+
 .rightbar {
     flex-grow: 1 ;
     
@@ -74,6 +83,7 @@ body {
     min-width: 0;
     display: flex;
     font-weight: 40;
+    align-items: center;
     
     
 
@@ -82,11 +92,11 @@ body {
 .rightbar--sendview--form--input{
     flex:1 1;
     width: 0;
-    min-width: 50px;
     margin-right: .5rem;
     border: none;
     padding: 1rem;
     font-size: 2rem;
+    height: 80%;
 
 
 }
@@ -96,6 +106,9 @@ button.rightbar--sendview--form--button {
     padding: 1rem;
     font-size: 1.5rem;
     flex-basis: 15%;
+    min-width: 2rem;
+    height: 80%;
+    line-height: .3rem;
 
 
 }
@@ -138,7 +151,7 @@ li.message {
 }
 
 .message--title--from {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     display: inline;
     margin-right: 1rem;
     font-weight: 600;
@@ -159,7 +172,7 @@ li.message {
 @media only screen and (max-width: 600px) {
 
     .rightbar--sendview {
-        margin-bottom: 1rem;
+      
         
     }
 
@@ -170,27 +183,11 @@ li.message {
     
 
     }
-
-    button.rightbar--sendview--locationButton {
-        margin:0.4rem auto;
-
-    }
   }
 
-  @media only screen and (max-height: 700px) {
-
-    button.rightbar--sendview--form--button {
-        padding-top: 3px;
-    
-
-    }
-
-    button.rightbar--sendview--locationButton {
-        padding-top: 3px;
 
 
-    }
-  }
+  
 
 
 

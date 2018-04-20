@@ -35,6 +35,13 @@ socket.on('connect', function() {
 
 socket.on('updateUserList', function(users) {
     console.log(users)
+    var ol = $('<ol></ol>')
+    
+    users.forEach(function(user){
+        ol.append($('<li></li>').text(user))
+    })
+
+    $('#people').html(ol)
 })
 
 socket.on('disconnect', function() {

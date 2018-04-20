@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0 " >  
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel='stylesheet' href='css/styles.css' > 
         <title >Chat | Chat app</title>
 
@@ -13,6 +13,9 @@
         <div class='container'>
             <div class='leftbar'>
                 <h1>People</h1>
+                <div id='people'>
+
+                </div>
             </div>
             <div class='rightbar'>
                 <div class='rightbar--topview'>
@@ -25,7 +28,7 @@
 
                     <form id='message-form' class="rightbar--sendview--form">
                         <input name='message' type='text' placeholder="Message" class="rightbar--sendview--form--input" autofocus  autocomplete="off"/>
-                        <button  class="rightbar--sendview--form--button">Send</button>
+                        <button  class="rightbar--sendview--form--button"><div>Send</div></button>
 
                     </form>
                     <!-- <button id='send-location' class="rightbar--sendview--locationButton"> Send Location</button> -->
